@@ -1,4 +1,3 @@
-
 #include "config.h"
 
 #include <Wire.h>
@@ -15,6 +14,8 @@ AdafruitIO_Group *group = io.group("google-assistant");
 void setup() {
 
   Wire.begin(SDA_PIN, SCL_PIN, I2C_MASTER); // join i2c bus (address optional for master)
+  pinMode(LED_BUILTIN, OUTPUT);
+  
   Serial.begin(115200);
 
   // wait for serial monitor to open
@@ -39,6 +40,8 @@ void setup() {
 
   // force IO to update our MQTT subscription with the current values of all feeds
   group->get();
+
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() {
@@ -55,28 +58,37 @@ void loop() {
 // is received from Adafruit IO. it was attached to
 // the counter-1 feed in the setup() function above.
 void lightmode(AdafruitIO_Data *data) {
+  digitalWrite(LED_BUILTIN, HIGH);
+  
   String val = data->value();
 
-  
+  Serial.println(val.c_str());
+
   Wire.beginTransmission(I2C_SLAVE);
-  Wire.write("mode ");
+  Wire.write("\n mode ");
   Wire.write(val.c_str());
   Wire.endTransmission();
   
   delay(85);
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 // this function is called whenever a 'counter-2' message
 // is received from Adafruit IO. it was attached to
 // the counter-2 feed in the setup() function above.
 void brightness(AdafruitIO_Data *data) {
+  digitalWrite(LED_BUILTIN, HIGH);
+  
   String val = data->value();
+  //toInt()?
+
+  Serial.println(val.c_str());
 
   Wire.beginTransmission(I2C_SLAVE);
-  Wire.write("bright ");
+  Wire.write("\n bright ");
   Wire.write(val.c_str());
   Wire.endTransmission();
   
   delay(85);
-  
+  digitalWrite(LED_BUILTIN, LOW);
 }
