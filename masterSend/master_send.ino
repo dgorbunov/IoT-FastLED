@@ -53,10 +53,6 @@ void loop() {
   io.run();
 }
 
-
-// this function is called whenever a 'counter-1' message
-// is received from Adafruit IO. it was attached to
-// the counter-1 feed in the setup() function above.
 void lightmode(AdafruitIO_Data *data) {
   digitalWrite(LED_BUILTIN, HIGH);
   
@@ -73,14 +69,10 @@ void lightmode(AdafruitIO_Data *data) {
   digitalWrite(LED_BUILTIN, LOW);
 }
 
-// this function is called whenever a 'counter-2' message
-// is received from Adafruit IO. it was attached to
-// the counter-2 feed in the setup() function above.
 void brightness(AdafruitIO_Data *data) {
   digitalWrite(LED_BUILTIN, HIGH);
   
   String val = data->value();
-  //toInt()?
 
   Serial.println(val.c_str());
 
