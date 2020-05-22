@@ -1,4 +1,5 @@
 # iot_fastled
+[![Build Status](https://travis-ci.org/dgorbunov/iot_fastled.svg?branch=master)](https://travis-ci.org/dgorbunov/iot_fastled)
 Google Assistant (or other services like Alexa) enabled addressable light strips using FastLED. 
 
 Two Arduinos are required (one NodeMCU and another generic Arduino) because:
