@@ -12,7 +12,7 @@ install:
 - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
 - arduino --install-boards esp8266:esp8266
 - arduino --board esp8266:esp8266:generic --save-prefs
-- arduino --install-library "Adafruit IO Arduino,Adafruit MQTT Library,FastLED,PolledTimeout,AdafruitIO_WiFi,ArduinoHttpClient"
+- arduino --install-library "Adafruit IO Arduino,Adafruit MQTT Library,FastLED,ArduinoHttpClient"
 script:
   - arduino --verify --board esp8266:esp8266:generic $PWD/masterSend/masterSend.ino
   - arduino --verify --board arduino:avr:uno $PWD/slaveReceive/slaveReceive.ino
